@@ -1091,7 +1091,7 @@ function startSlaverCombat(isBoss) {
         
         <div style={{textAlign: "center", marginBottom: 40}}>
           <h2 style={{fontSize: 42, fontWeight: 900, color: "#fff", textShadow: "0 0 20px rgba(255,255,255,0.5)", marginBottom: 10}}>Choose your race</h2>
-          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>DIFFICULTY</p>
+          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>Step 1 of 2 · Difficulty next</p>
         </div>
         
         <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20}}>
