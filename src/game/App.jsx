@@ -1029,9 +1029,17 @@ function startSlaverCombat(isBoss) {
       <PastoralBG />
       <div style={{position: "relative", zIndex: 10, width: "100%", maxWidth: 650}}>
         
-        <div style={{textAlign: "center", marginBottom: 40}}>
+        <div style={{textAlign: "center", marginBottom: 30}}>
+          <p style={{fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginBottom: 6}}>Race · {race?.name || "—"}</p>
           <h2 style={{fontSize: 42, fontWeight: 900, color: "#fff", textShadow: "0 0 20px rgba(255,255,255,0.5)", marginBottom: 10}}>Choose your difficulty</h2>
-          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>Permanent for this playthrough</p>
+          <p style={{fontSize: 13, color: "rgba(255,255,255,0.55)", maxWidth: 560, margin: "0 auto", lineHeight: 1.6}}>{({
+            human: "Humans are versatile — Normal is the balanced experience.",
+            equar: "Equars are fragile but evasive — Easy or Normal is recommended for new merchants.",
+            tetrabrachian: "Tetrabrachians hit hard. Hard difficulty showcases their multi-attack kit.",
+            tenebrim: "Tenebrim's huge HP pool makes Hard a fair fight.",
+            devil: "Devils start with innate spells — Normal or Hard suits them well.",
+            elf: "The Elf scenario has its own difficulty curve — choose any setting."
+          }[race?.id]) || "Permanent for this playthrough."}</p>
         </div>
         
         <div style={{display: "flex", flexDirection: "column", gap: 16}}>
