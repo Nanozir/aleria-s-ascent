@@ -1629,11 +1629,11 @@ if (race?.id === "elf") {
         {combatResult?<div style={{display:"flex",gap:10}}>
           {combatResult==="win"?<Btn variant="success" onClick={()=>{setScreen(combatOrigin);setTab("map");}}>Return</Btn>:<Btn variant="danger" onClick={()=>{if(diff?.perma)startNewGame();else{setStats(s=>({...s,hp:Math.round(s.maxHp*0.4),stamina:Math.round(s.maxStamina*0.5)}));setScreen(combatOrigin);setTab("map");}}}>{diff?.perma?"Return to menu":"Respawn"}</Btn>}
         </div>:combatPhase==="player"?(
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:12}}>
-            {ACTIONS.map(a=>{const noSta=a.staminaCost&&stats.stamina<a.staminaCost;const noMp=a.mpCost&&stats.mp<a.mpCost;const dis=!!noSta||!!noMp;return <button key={a.id} disabled={dis} onClick={()=>playerAct(a)} className="action-card" style={{borderColor:a.isSpell?"rgba(168,157,240,0.3)":"rgba(255,255,255,0.15)"}}>
-              <p style={{fontWeight:700,fontSize:14,color:a.isSpell?"#a89df0":a.id==="guard"?"#3ec995":a.id==="heavy"||a.id==="quad_flurry"||a.id==="power_strike"||a.id==="hell_strike"?"#e85c3a":"#d4cbf8",marginBottom:4}}>{a.name}</p>
-              <p style={{fontSize:11,color:"rgba(200,192,248,0.4)",lineHeight:1.5,marginBottom:8}}>{a.desc}</p>
-              <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>{a.mpCost>0&&<Tag color="#a89df0">{a.mpCost} MP</Tag>}{a.staminaCost>0&&<Tag color="#3ec995">{a.staminaCost} Sta</Tag>}</div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:18,padding:"4px 2px"}}>
+            {ACTIONS.map(a=>{const noSta=a.staminaCost&&stats.stamina<a.staminaCost;const noMp=a.mpCost&&stats.mp<a.mpCost;const dis=!!noSta||!!noMp;return <button key={a.id} disabled={dis} onClick={()=>playerAct(a)} className="action-card" style={{borderColor:a.isSpell?"rgba(168,157,240,0.3)":"rgba(255,255,255,0.15)",padding:"14px 16px",minHeight:96,display:"flex",flexDirection:"column",justifyContent:"space-between",gap:6}}>
+              <p style={{fontWeight:700,fontSize:14,color:a.isSpell?"#a89df0":a.id==="guard"?"#3ec995":a.id==="heavy"||a.id==="quad_flurry"||a.id==="power_strike"||a.id==="hell_strike"||a.id==="shadow_rend"||a.id==="pierce"||a.id==="whirlwind"?"#e85c3a":"#d4cbf8",margin:0}}>{a.name}</p>
+              <p style={{fontSize:11,color:"rgba(200,192,248,0.55)",lineHeight:1.5,margin:0,flex:1}}>{a.desc}</p>
+              <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>{a.mpCost>0&&<Tag color="#a89df0">{a.mpCost} MP</Tag>}{a.staminaCost>0&&<Tag color="#3ec995">{a.staminaCost} Sta</Tag>}{a.aoe&&<Tag color="#ffd966">AoE</Tag>}</div>
             </button>;})}
           </div>
         ):<p style={{fontSize:12,color:"rgba(200,192,248,0.35)"}}>Enemy acting…</p>}
