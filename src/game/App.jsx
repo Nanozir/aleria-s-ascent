@@ -356,7 +356,7 @@ export default function App(){
     setSiphonNodes([]); setSiphonScore(0); setSiphonActive(false); setSiphonTime(30); setSiphonResult(null);
     setSlaveTask(null); setSlaveProgress(0); setSlaveDay(0); setEscapeReady(false);
     setCraftMats({metal:0,herb:0}); setCityLevel({pump:0,walls:0}); setCraftedShop([]);
-    setScreen("difficulty");
+    setScreen("race");
   }
 
   function returnToMenu(){
