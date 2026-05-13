@@ -47,6 +47,7 @@ export default function ElfScenario({ setScreen, notify, stats, setStats }) {
   const [lodgeLevel, setLodgeLevel] = useState(1);
   const [mines, setMines] = useState(0);
   const [mineLevel, setMineLevel] = useState(1);
+  const [defenseLevel, setDefenseLevel] = useState(0);
 
   // SCALING CAPACITIES
   const maxHp = 100 + (mutationLevel * 20);
