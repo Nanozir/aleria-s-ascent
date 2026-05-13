@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import AleriaGame from "@/game/AleriaGame";
+// @ts-expect-error - JSX game module without types
+import App from "@/game/App.jsx";
 import "@/game/aleria.css";
 
 export const Route = createFileRoute("/")({
@@ -13,5 +14,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <AleriaGame />;
+  return <App />;
 }
