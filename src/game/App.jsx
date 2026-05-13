@@ -388,7 +388,14 @@ export default function App(){
   function pickDiff(d){
     if(d.locked&&progress.cleared<d.unlockReq){notify(`Defeat ${d.unlockReq} Doomsday to unlock.`,"#9a6c10");return;}
     if (window.SFX && window.SFX.menuSelect) window.SFX.menuSelect();
-    setDiff(d);setScreen("race");
+    setDiff(d);
+    // Route to next screen based on chosen race
+    const r = race;
+    if(!r){ setScreen("race"); return; }
+    if(r.id === "devil"){ setSpells(DEVIL_SPELLS.map(s => ({ ...s }))); setScreen("devil_intro"); }
+    else if(r.id === "tenebrim"){ setScreen("ten_origin"); }
+    else if(r.id === "elf"){ setScreen("elf_scenario"); }
+    else { setScreen("origin"); }
   }
 
   function pickRace(r){
@@ -398,10 +405,8 @@ export default function App(){
     setRace(r);
     setStats({ hp: 100 + (r.hpBonus || 0), maxHp: 100 + (r.hpBonus || 0), mp: 60 + (r.mpBonus || 0), maxMp: 60 + (r.mpBonus || 0), stamina: 80, maxStamina: 80 });
 
-    if(r.id === "devil"){ setSpells(DEVIL_SPELLS.map(s => ({ ...s }))); setScreen("devil_intro"); } 
-    else if(r.id === "tenebrim"){ setScreen("ten_origin"); } 
-    else if(r.id === "elf"){ setScreen("elf_scenario"); } 
-    else { setScreen("origin"); }
+    // Difficulty is now chosen AFTER race
+    setScreen("difficulty");
   }
 
   function pickOrigin(o){
