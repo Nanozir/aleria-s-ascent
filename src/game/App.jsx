@@ -356,7 +356,7 @@ export default function App(){
     setSiphonNodes([]); setSiphonScore(0); setSiphonActive(false); setSiphonTime(30); setSiphonResult(null);
     setSlaveTask(null); setSlaveProgress(0); setSlaveDay(0); setEscapeReady(false);
     setCraftMats({metal:0,herb:0}); setCityLevel({pump:0,walls:0}); setCraftedShop([]);
-    setScreen("difficulty");
+    setScreen("race");
   }
 
   function returnToMenu(){
@@ -388,7 +388,14 @@ export default function App(){
   function pickDiff(d){
     if(d.locked&&progress.cleared<d.unlockReq){notify(`Defeat ${d.unlockReq} Doomsday to unlock.`,"#9a6c10");return;}
     if (window.SFX && window.SFX.menuSelect) window.SFX.menuSelect();
-    setDiff(d);setScreen("race");
+    setDiff(d);
+    // Route to next screen based on chosen race
+    const r = race;
+    if(!r){ setScreen("race"); return; }
+    if(r.id === "devil"){ setSpells(DEVIL_SPELLS.map(s => ({ ...s }))); setScreen("devil_intro"); }
+    else if(r.id === "tenebrim"){ setScreen("ten_origin"); }
+    else if(r.id === "elf"){ setScreen("elf_scenario"); }
+    else { setScreen("origin"); }
   }
 
   function pickRace(r){
@@ -398,10 +405,8 @@ export default function App(){
     setRace(r);
     setStats({ hp: 100 + (r.hpBonus || 0), maxHp: 100 + (r.hpBonus || 0), mp: 60 + (r.mpBonus || 0), maxMp: 60 + (r.mpBonus || 0), stamina: 80, maxStamina: 80 });
 
-    if(r.id === "devil"){ setSpells(DEVIL_SPELLS.map(s => ({ ...s }))); setScreen("devil_intro"); } 
-    else if(r.id === "tenebrim"){ setScreen("ten_origin"); } 
-    else if(r.id === "elf"){ setScreen("elf_scenario"); } 
-    else { setScreen("origin"); }
+    // Difficulty is now chosen AFTER race
+    setScreen("difficulty");
   }
 
   function pickOrigin(o){
@@ -1024,9 +1029,17 @@ function startSlaverCombat(isBoss) {
       <PastoralBG />
       <div style={{position: "relative", zIndex: 10, width: "100%", maxWidth: 650}}>
         
-        <div style={{textAlign: "center", marginBottom: 40}}>
+        <div style={{textAlign: "center", marginBottom: 30}}>
+          <p style={{fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600, marginBottom: 6}}>Race · {race?.name || "—"}</p>
           <h2 style={{fontSize: 42, fontWeight: 900, color: "#fff", textShadow: "0 0 20px rgba(255,255,255,0.5)", marginBottom: 10}}>Choose your difficulty</h2>
-          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>Permanent for this playthrough</p>
+          <p style={{fontSize: 13, color: "rgba(255,255,255,0.55)", maxWidth: 560, margin: "0 auto", lineHeight: 1.6}}>{({
+            human: "Humans are versatile — Normal is the balanced experience.",
+            equar: "Equars are fragile but evasive — Easy or Normal is recommended for new merchants.",
+            tetrabrachian: "Tetrabrachians hit hard. Hard difficulty showcases their multi-attack kit.",
+            tenebrim: "Tenebrim's huge HP pool makes Hard a fair fight.",
+            devil: "Devils start with innate spells — Normal or Hard suits them well.",
+            elf: "The Elf scenario has its own difficulty curve — choose any setting."
+          }[race?.id]) || "Permanent for this playthrough."}</p>
         </div>
         
         <div style={{display: "flex", flexDirection: "column", gap: 16}}>
@@ -1062,7 +1075,7 @@ function startSlaverCombat(isBoss) {
         </div>
         
         <div style={{textAlign: "center", marginTop: 30}}>
-          <button onClick={() => { if(window.SFX && window.SFX.menuBack) window.SFX.menuBack(); setScreen("main_menu"); }} style={{background: "transparent", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", padding: "10px", transition: "color 0.2s"}} onMouseOver={(e) => e.target.style.color = "#fff"} onMouseOut={(e) => e.target.style.color = "rgba(255,255,255,0.5)"}>
+          <button onClick={() => { if(window.SFX && window.SFX.menuBack) window.SFX.menuBack(); setScreen("race"); }} style={{background: "transparent", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", padding: "10px", transition: "color 0.2s"}} onMouseOver={(e) => e.target.style.color = "#fff"} onMouseOut={(e) => e.target.style.color = "rgba(255,255,255,0.5)"}>
             ← Back
           </button>
         </div>
@@ -1078,7 +1091,7 @@ function startSlaverCombat(isBoss) {
         
         <div style={{textAlign: "center", marginBottom: 40}}>
           <h2 style={{fontSize: 42, fontWeight: 900, color: "#fff", textShadow: "0 0 20px rgba(255,255,255,0.5)", marginBottom: 10}}>Choose your race</h2>
-          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>DIFFICULTY</p>
+          <p style={{fontSize: 12, color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600}}>Step 1 of 2 · Difficulty next</p>
         </div>
         
         <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20}}>
@@ -1149,7 +1162,7 @@ function startSlaverCombat(isBoss) {
         </div>
         
         <div style={{textAlign: "center", marginTop: 40}}>
-          <button onClick={() => { if(window.SFX && window.SFX.menuBack) window.SFX.menuBack(); setScreen("difficulty"); }} style={{background: "transparent", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", padding: "10px", transition: "color 0.2s"}} onMouseOver={(e) => e.target.style.color = "#fff"} onMouseOut={(e) => e.target.style.color = "rgba(255,255,255,0.5)"}>
+          <button onClick={() => { if(window.SFX && window.SFX.menuBack) window.SFX.menuBack(); setScreen("main_menu"); }} style={{background: "transparent", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", padding: "10px", transition: "color 0.2s"}} onMouseOver={(e) => e.target.style.color = "#fff"} onMouseOut={(e) => e.target.style.color = "rgba(255,255,255,0.5)"}>
             ← Back
           </button>
         </div>
@@ -1629,11 +1642,11 @@ if (race?.id === "elf") {
         {combatResult?<div style={{display:"flex",gap:10}}>
           {combatResult==="win"?<Btn variant="success" onClick={()=>{setScreen(combatOrigin);setTab("map");}}>Return</Btn>:<Btn variant="danger" onClick={()=>{if(diff?.perma)startNewGame();else{setStats(s=>({...s,hp:Math.round(s.maxHp*0.4),stamina:Math.round(s.maxStamina*0.5)}));setScreen(combatOrigin);setTab("map");}}}>{diff?.perma?"Return to menu":"Respawn"}</Btn>}
         </div>:combatPhase==="player"?(
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:12}}>
-            {ACTIONS.map(a=>{const noSta=a.staminaCost&&stats.stamina<a.staminaCost;const noMp=a.mpCost&&stats.mp<a.mpCost;const dis=!!noSta||!!noMp;return <button key={a.id} disabled={dis} onClick={()=>playerAct(a)} className="action-card" style={{borderColor:a.isSpell?"rgba(168,157,240,0.3)":"rgba(255,255,255,0.15)"}}>
-              <p style={{fontWeight:700,fontSize:14,color:a.isSpell?"#a89df0":a.id==="guard"?"#3ec995":a.id==="heavy"||a.id==="quad_flurry"||a.id==="power_strike"||a.id==="hell_strike"?"#e85c3a":"#d4cbf8",marginBottom:4}}>{a.name}</p>
-              <p style={{fontSize:11,color:"rgba(200,192,248,0.4)",lineHeight:1.5,marginBottom:8}}>{a.desc}</p>
-              <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>{a.mpCost>0&&<Tag color="#a89df0">{a.mpCost} MP</Tag>}{a.staminaCost>0&&<Tag color="#3ec995">{a.staminaCost} Sta</Tag>}</div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:18,padding:"4px 2px"}}>
+            {ACTIONS.map(a=>{const noSta=a.staminaCost&&stats.stamina<a.staminaCost;const noMp=a.mpCost&&stats.mp<a.mpCost;const dis=!!noSta||!!noMp;return <button key={a.id} disabled={dis} onClick={()=>playerAct(a)} className="action-card" style={{borderColor:a.isSpell?"rgba(168,157,240,0.3)":"rgba(255,255,255,0.15)",padding:"14px 16px",minHeight:96,display:"flex",flexDirection:"column",justifyContent:"space-between",gap:6}}>
+              <p style={{fontWeight:700,fontSize:14,color:a.isSpell?"#a89df0":a.id==="guard"?"#3ec995":a.id==="heavy"||a.id==="quad_flurry"||a.id==="power_strike"||a.id==="hell_strike"||a.id==="shadow_rend"||a.id==="pierce"||a.id==="whirlwind"?"#e85c3a":"#d4cbf8",margin:0}}>{a.name}</p>
+              <p style={{fontSize:11,color:"rgba(200,192,248,0.55)",lineHeight:1.5,margin:0,flex:1}}>{a.desc}</p>
+              <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>{a.mpCost>0&&<Tag color="#a89df0">{a.mpCost} MP</Tag>}{a.staminaCost>0&&<Tag color="#3ec995">{a.staminaCost} Sta</Tag>}{a.aoe&&<Tag color="#ffd966">AoE</Tag>}</div>
             </button>;})}
           </div>
         ):<p style={{fontSize:12,color:"rgba(200,192,248,0.35)"}}>Enemy acting…</p>}
