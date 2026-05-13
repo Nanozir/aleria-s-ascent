@@ -4,12 +4,14 @@
 export let VOLUMES = { master: 1.0, bgm: 0.6, sfx: 1.0 };
 
 // 2. The Bridge: App.jsx calls this when you move a slider
-window.updateAudioVolumes = (newVols) => {
+if (typeof window !== "undefined") {
+  window.updateAudioVolumes = (newVols) => {
     VOLUMES = newVols;
     if (typeof currentBGM !== "undefined" && currentBGM) {
         currentBGM.volume = 0.3 * VOLUMES.master * VOLUMES.bgm; 
     }
-};
+  };
+}
 
 // ── 1. Gamla ljudmotorn (SFX & Bossar) ──
 let actx = null;
