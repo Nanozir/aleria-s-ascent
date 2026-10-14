@@ -1,12 +1,11 @@
 {
   "_notes": "Designs follow the lore section of 'A Guide For Heroes (Who'd Rather Not Be)'. Light Kagami's look is new (the lore only says he is the 24th hero and translated the Guide). Companion entries are race-accurate DRAFTS with placeholder ids; rename and adjust before generating.",
-  "style_guard": "Hand-made, idiosyncratic illustration that strictly follows the attached reference images. Do NOT fall back to generic anime, gacha, webtoon, or AI-gloss rendering: no airbrushed skin, no glossy plastic highlights, no default big-eyed moe faces, no bloom or lens flare, no symmetrical stock poses.",
-  "sheet_layout": "Visual novel sprite sheet on a flat pure-white background. One character only. A single row of {count} half-body sprites (head to mid-thigh), identical scale, framing, pose and outfit in every cell; only the face, eyebrows, mouth and small hand gestures change. Even spacing, no overlap, no borders, no text, no labels, no watermark.",
+  "style_guard": "Hand-painted illustration that strictly follows the attached style references: soft painterly shading with warm ambient light, slightly muted earthy palette, thin dark-brown lineart, hair painted in clumps with soft highlights, detailed fabric folds, natural proportions. Do NOT fall back to generic anime, gacha, webtoon or AI-gloss rendering: no airbrushed plastic skin, no glossy highlights, no bloom, no flat stock poses.",
   "characters": [
     {
       "id": "light_kagami",
       "name": "Light Kagami",
-      "description": "Light Kagami, the 24th Hero of Aleria. 17-year-old Japanese boy, 172 cm, lean and slouched with bad posture. Messy uncombed black hair, heavy-lidded dark eyes with tired bags, sharp jaw, a permanent mild scowl. Black Japanese gakuran school uniform worn sloppily: jacket unbuttoned over a wrinkled white shirt half-untucked, sleeves pushed up, cheap wired earbuds hanging from his collar. Hands usually in his pockets. Reads as a blunt, foul-mouthed, self-absorbed cynic who has zero respect for anyone calling him a hero.",
+      "description": "Light Kagami, the 24th Hero of Aleria. 17-year-old Japanese boy, 172 cm, lean and slouched with bad posture. Messy uncombed black hair, heavy-lidded dark eyes with tired bags, sharp jaw, a permanent mild scowl. Black Japanese gakuran school uniform worn sloppily: jacket hanging fully OPEN and unbuttoned over a wrinkled white shirt half-untucked, sleeves pushed up, cheap wired earbuds hanging from his collar. Hands usually in his pockets. Reads as a blunt, foul-mouthed, self-absorbed cynic who has zero respect for anyone calling him a hero.",
       "expressions": [
         "neutral: bored, half-lidded stare, mouth flat",
         "annoyed: one eyebrow raised, lip curled, clicking his tongue",
@@ -22,37 +21,76 @@
       "id": "companion_elf",
       "name": "Elf companion (draft)",
       "description": "Adult elf woman from the Northern Expanse, long pointed ears, pale skin, ash-blonde hair in a practical braid. Not graceful or noble: sharp, greedy-looking, quick to grin. Wears layered cold-weather gear mixed with reverse-engineered Ancient technology: a fur-lined coat, brass-and-crystal gauntlet, goggles pushed up on her forehead. Treats nature as a tool.",
-      "expressions": ["neutral", "grinning", "irritated", "scheming", "surprised", "laughing"]
+      "expressions": [
+        "neutral",
+        "grinning",
+        "irritated",
+        "scheming",
+        "surprised",
+        "laughing"
+      ]
     },
     {
       "id": "companion_devil_veyrith",
       "name": "Veyrith Devil companion (draft)",
       "description": "Veyrith devil, adult man. Two short horns extending horizontally from the forehead flanking a central third eye with a yellow iris; below it two small raised nodes (one red, one blue). His two normal eyes are solid black with no pupils or irises, making him look flat and unreadable. Slightly pointed ears, warm neutral skin, smooth refined features, neat dark hair. Dressed in clean, structured Underworld formalwear in dark tones with crystal-lit accents. Quietly exhausted by the surface.",
-      "expressions": ["neutral", "faint polite smile", "tired", "mildly amused", "cold", "third eye glowing"]
+      "expressions": [
+        "neutral",
+        "faint polite smile",
+        "tired",
+        "mildly amused",
+        "cold",
+        "third eye glowing"
+      ]
     },
     {
       "id": "companion_beastkin",
       "name": "Beastkin companion (draft)",
       "description": "Young beastkin woman from a secluded forest tribe, fox ears and a large fox tail, tanned skin, freckles, short messy auburn hair. Simple handmade tribal farming clothes, a woven satchel, bandaged hands. Strong, healthy build. Naive and trusting, takes everyone at their word.",
-      "expressions": ["neutral", "beaming", "confused", "ears flat sad", "angry growl", "curious sniffing"]
+      "expressions": [
+        "neutral",
+        "beaming",
+        "confused",
+        "ears flat sad",
+        "angry growl",
+        "curious sniffing"
+      ]
     },
     {
       "id": "companion_tenebrim",
       "name": "Tenebrim Mourak companion (draft)",
       "description": "Tenebrim man, a Mourak who left Menfor. Dark skin, short stub horns, natural crimson tribal markings across face and arms, heavy muscular build. White hair tied back. Rough travel leathers, a heavy blade across his back. Stoic, resilient, judges people by what they leave behind.",
-      "expressions": ["neutral", "stern", "faint smirk", "furious", "weary", "rare laugh"]
+      "expressions": [
+        "neutral",
+        "stern",
+        "faint smirk",
+        "furious",
+        "weary",
+        "rare laugh"
+      ]
     },
     {
       "id": "npc_church_knight",
       "name": "Church Knight",
       "description": "Church Knight of the Church of Ucliat. Dense layers of silver chains draped over a black base garment, many sword-crossed sun medallions hanging from the chains, a large radiant halo-like headpiece of radiating silver spikes with an upright sword sheath integrated at the back, wide belt with metallic buckle, spikes and dangling chain extensions. Disciplined, rigid posture.",
-      "expressions": ["neutral", "stern", "outraged", "suspicious"]
+      "expressions": [
+        "neutral",
+        "stern",
+        "outraged",
+        "suspicious"
+      ]
     },
     {
       "id": "npc_crimson_sun_mellet",
       "name": "Crimson Sun Order priest",
       "description": "Mellet priest of the Crimson Sun Order. Violet to lavender skin, lean frail build, intricate cage-like metal mask covering the lower half of the face, ornate robes in red and silver with dense embroidery, holding a relic. Cold, scholarly, emotionally flat.",
-      "expressions": ["neutral", "lecturing", "displeased", "intrigued"]
+      "expressions": [
+        "neutral",
+        "lecturing",
+        "displeased",
+        "intrigued"
+      ]
     }
-  ]
+  ],
+  "sprite_layout": "A single visual novel character sprite, half-body from head to mid-thigh, facing three-quarters toward the viewer, centered, on a flat pure-white background. One character only. No text, no labels, no frame, no watermark."
 }

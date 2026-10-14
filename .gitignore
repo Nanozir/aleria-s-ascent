@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Third-party style reference art (local only)
+tools/sprites/references/*
+!tools/sprites/references/README.md
